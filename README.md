@@ -13,7 +13,7 @@ Instalare
 
 Clonează repository-ul:
 
-git clone https://github.com/your-repo/minesweeper.git
+git clone [https://github.com/your-repo/minesweeper.git](https://github.com/Drumgun23/minesweeper)
 cd minesweeper
 
 Compilează fișierele Java:
