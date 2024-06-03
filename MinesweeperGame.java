@@ -6,12 +6,14 @@ public class MinesweeperGame {
     private final int cols;
     private final int[][] grid;
     private final boolean[][] mines;
+    private final boolean[][] revealed; // Adăugat pentru a ține evidența celulelor dezvăluite
 
     public MinesweeperGame(int rows, int cols, int minesCount) {
         this.rows = rows;
         this.cols = cols;
         this.grid = new int[rows][cols];
         this.mines = new boolean[rows][cols];
+        this.revealed = new boolean[rows][cols]; // Inițializat array-ul de dezvăluire
         placeMines(minesCount);
         calculateNumbers();
     }
@@ -57,6 +59,21 @@ public class MinesweeperGame {
     }
 
     public boolean revealCell(int row, int col) {
-        return !mines[row][col];
+        if (!revealed[row][col]) {
+            revealed[row][col] = true;
+            return !mines[row][col];
+        }
+        return true; // Dacă celula a fost deja dezvăluită, returnează true
+    }
+
+    public boolean isWon() {
+        for (int r = 0; r < rows; r++) {
+            for (int c = 0; c < cols; c++) {
+                if (!mines[r][c] && !revealed[r][c]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
