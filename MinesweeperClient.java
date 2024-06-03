@@ -13,8 +13,9 @@ public class MinesweeperClient extends JFrame {
 
     private PrintWriter out;
     private BufferedReader in;
-    private JButton[][] buttons;
     private Socket socket;
+    private JButton[][] buttons;
+    
 
     public MinesweeperClient(int rows, int cols) {
         setTitle("Minesweeper Client");
@@ -88,7 +89,6 @@ public class MinesweeperClient extends JFrame {
                     } else if (status.equals("MINE_HIT")) {
                         SwingUtilities.invokeLater(() -> {
                             JOptionPane.showMessageDialog(MinesweeperClient.this, "Game Over!");
-                            // Close the game window
                             dispose();
                         });
                     } else if (status.equals("FLAGGED")) {
@@ -99,6 +99,11 @@ public class MinesweeperClient extends JFrame {
                                 buttons[row][col].setText("F");
                             }
                         });
+                    } else if (status.equals("WON")) {
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(MinesweeperClient.this, "You Won!");
+                            dispose();
+                        });
                     }
                 }
             } catch (IOException e) {
@@ -106,7 +111,6 @@ public class MinesweeperClient extends JFrame {
             }
         }
     }
-
 
     public static void main(String[] args) {
         MinesweeperClient client = new MinesweeperClient(10, 10);
