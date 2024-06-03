@@ -43,14 +43,14 @@ Creați un script run.sh pentru a automatiza procesul de compilare și rulare:
 
 #!/bin/bash
 
-# Compilează fișierele Java
+ Compilează fișierele Java
 javac src/minesweeper/*.java
 
-# Pornește serverul
+ Pornește serverul
 echo "Pornire server..."
 java -cp src minesweeper.MinesweeperServer &
 
-# Pornește clientul
+ Pornește clientul
 echo "Pornire client..."
 java -cp src minesweeper.MinesweeperClient
 Asigurați-vă că scriptul run.sh este executabil:
