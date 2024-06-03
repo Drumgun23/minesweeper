@@ -62,11 +62,17 @@ class ClientHandler extends Thread {
                     if (safe) {
                         int value = game.getValue(row, col);
                         out.println("SAFE " + row + " " + col + " " + value);
+                        if (game.isWon()) {
+                            out.println("WON");
+                        }
                     } else {
                         out.println("MINE_HIT");
                     }
                 } else if (command.equals("FLAG")) {
-                    out.println("FLAGGED");
+                    out.println("FLAGGED " + row + " " + col);
+                    if (game.isWon()) {
+                        out.println("WON");
+                    }
                 } else {
                     // Unknown command, ignore
                 }
